@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next mist use-motion" lang="zh-Hans">
+<html class="theme-next muse use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -84,6 +84,8 @@
 
 
 
+  <link rel="alternate" href="/atom.xml" title="Masonz" type="application/atom+xml" />
+
 
 
 
@@ -94,18 +96,22 @@
 
 
 
-<meta name="description" content="介绍BEM代表（Block， Element， Modifier），是由俄罗斯的互联网企业Yandex的开发团队提出的一种前端命名方法论，它可以更好地组织你项目中的CSS类名。 特点 便于维护，按组件划分类名，减少层次关系，实现扁平化、语义化 提高渲染效率，通过唯一的类名来避免不必要的样式继承 “不好的地方”：类名过长，类名变多，看起来丑陋  使用基本用法 123.block &amp;#123;&amp;#12">
+<meta name="description" content="概念BEM代表（Block， Element， Modifier），是由俄罗斯的互联网企业Yandex的开发团队提出的一种前端命名方法论，它可以更好地组织你项目中的CSS类名，对于大型项目成倍增长的样式，它将很有用。  BEM基于web组件的开发方式，其背后的思想在于将用户界面划分为独立的块，这使得开发人员在构建复杂UI时更加的容易和快速，直接复用已存在的组件，而不是复制和粘贴。  介绍 Bloc">
 <meta name="keywords" content="CSS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="BEM的介绍与使用">
 <meta property="og:url" content="http://yoursite.com/2017/08/13/BEM的介绍与使用/index.html">
 <meta property="og:site_name" content="Masonz">
-<meta property="og:description" content="介绍BEM代表（Block， Element， Modifier），是由俄罗斯的互联网企业Yandex的开发团队提出的一种前端命名方法论，它可以更好地组织你项目中的CSS类名。 特点 便于维护，按组件划分类名，减少层次关系，实现扁平化、语义化 提高渲染效率，通过唯一的类名来避免不必要的样式继承 “不好的地方”：类名过长，类名变多，看起来丑陋  使用基本用法 123.block &amp;#123;&amp;#12">
+<meta property="og:description" content="概念BEM代表（Block， Element， Modifier），是由俄罗斯的互联网企业Yandex的开发团队提出的一种前端命名方法论，它可以更好地组织你项目中的CSS类名，对于大型项目成倍增长的样式，它将很有用。  BEM基于web组件的开发方式，其背后的思想在于将用户界面划分为独立的块，这使得开发人员在构建复杂UI时更加的容易和快速，直接复用已存在的组件，而不是复制和粘贴。  介绍 Bloc">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-14T09:16:19.180Z">
+<meta property="og:image" content="http://yoursite.com/images/BEM/bem-demo-person-block.png">
+<meta property="og:image" content="http://yoursite.com/images/BEM/bem-demo-person-elements.png">
+<meta property="og:image" content="http://yoursite.com/images/BEM/bem-demo-person-modifiers.png">
+<meta property="og:updated_time" content="2017-09-14T09:20:56.567Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="BEM的介绍与使用">
-<meta name="twitter:description" content="介绍BEM代表（Block， Element， Modifier），是由俄罗斯的互联网企业Yandex的开发团队提出的一种前端命名方法论，它可以更好地组织你项目中的CSS类名。 特点 便于维护，按组件划分类名，减少层次关系，实现扁平化、语义化 提高渲染效率，通过唯一的类名来避免不必要的样式继承 “不好的地方”：类名过长，类名变多，看起来丑陋  使用基本用法 123.block &amp;#123;&amp;#12">
+<meta name="twitter:description" content="概念BEM代表（Block， Element， Modifier），是由俄罗斯的互联网企业Yandex的开发团队提出的一种前端命名方法论，它可以更好地组织你项目中的CSS类名，对于大型项目成倍增长的样式，它将很有用。  BEM基于web组件的开发方式，其背后的思想在于将用户界面划分为独立的块，这使得开发人员在构建复杂UI时更加的容易和快速，直接复用已存在的组件，而不是复制和粘贴。  介绍 Bloc">
+<meta name="twitter:image" content="http://yoursite.com/images/BEM/bem-demo-person-block.png">
 
 
 
@@ -113,7 +119,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Mist',
+    scheme: 'Muse',
     sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
@@ -355,54 +361,32 @@
       
 
       
-        <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p><a href="https://en.bem.info/" target="_blank" rel="external">BEM</a>代表（Block， Element， Modifier），是由俄罗斯的互联网企业<a href="https://www.yandex.com/" target="_blank" rel="external">Yandex</a>的开发团队提出的一种前端命名方法论，它可以更好地组织你项目中的CSS类名。</p>
-<h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><ul>
-<li>便于维护，按组件划分类名，减少层次关系，实现扁平化、语义化</li>
-<li>提高渲染效率，通过唯一的类名来避免不必要的样式继承</li>
-<li>“不好的地方”：类名过长，类名变多，看起来丑陋</li>
-</ul>
-<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>基本用法</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.block</span> &#123;&#125;</div><div class="line"><span class="selector-class">.block__element</span> &#123;&#125;</div><div class="line"><span class="selector-class">.block__element--modifier</span> &#123;&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li><code>.block</code> 代表一个<strong>块</strong>（或者一个组件的最高等级）</li>
-<li><code>.block__element</code> 代表这个块中的<strong>元素</strong>，（一个组件下的child）</li>
-<li><code>.block__element--modifier</code> 代表一个元素的<strong>修饰</strong>（比如不同的状态或版本）</li>
+        <h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p><a href="https://en.bem.info/" target="_blank" rel="external">BEM</a>代表（Block， Element， Modifier），是由俄罗斯的互联网企业<a href="https://www.yandex.com/" target="_blank" rel="external">Yandex</a>的开发团队提出的一种前端命名方法论，它可以更好地组织你项目中的CSS类名，对于大型项目成倍增长的样式，它将很有用。</p>
+<blockquote>
+<p>BEM基于web组件的开发方式，其背后的思想在于将用户界面划分为独立的块，这使得开发人员在构建复杂UI时更加的容易和快速，直接复用已存在的组件，而不是复制和粘贴。</p>
+</blockquote>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><ul>
+<li><code>Block</code>：代表<code>块</code>，用于表示组件。</li>
+<li><code>Element</code>：代表<code>元素</code>，出现在<code>块</code>的内部，是块构成的主要成员。</li>
+<li><code>Modifier</code>：代表<code>修饰符</code>（比如不同的状态或版本），开发人员经常会遇到这种情况：要写重复的组件或者两个结构一样的组件，但只有小部分样式的不同，例如： 两个div，一个是红色背景，一个是蓝色背景。这时<code>修饰符</code>起了作用，用一个类名来添加额外的样式。<code>修饰符</code>使用<code>--</code>两个破折号作为区分，适用于<code>块</code>和<code>元素</code>，我们称之为<code>块修饰符</code>和<code>元素修饰符</code>。</li>
 </ul>
 <blockquote>
-<p><code>block</code>和<code>element</code>之间用<code>__</code>来分割<br>一个类名应该最多只能有一个元素，即<code>.block__element</code>，当出现<code>block__element1__element2</code>时，应该考虑重新调整下组件的结构<br><code>modifier</code>修饰符使用<code>--</code>来分割，可以被用在块和元素上<br><code>block</code>、<code>element</code>、<code>modifier</code>的命名可以是多个单词，之间用单个<code>-</code>隔开，即<code>user-profile</code>，<code>state-success</code></p>
+<p>一般来讲类名最多只能包含一个元素，即<code>.block__element</code>，当出现<code>block__element1__element2</code>时，应该考虑重新调整下组件的结构。<br><code>Block</code>、<code>Element</code>、<code>Modifier</code>的命名如果是多个单词，那么之间用单个<code>-</code>隔开，即<code>user-profile</code>，<code>state-success</code>（这也是为什么modifier使用<code>--</code>的原因）。</p>
 </blockquote>
-<p>下面通过一个用户中心为例子，来讲讲BEM的使用:</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.profile</span> &#123;&#125;</div><div class="line"><span class="selector-class">.profile__nick-name</span> &#123;&#125;</div><div class="line"><span class="selector-class">.profile__avatar</span> &#123;&#125;</div><div class="line"><span class="selector-class">.profile__avatar--round</span> &#123; <span class="attribute">border-radius</span>: <span class="number">50%</span> &#125;</div></pre></td></tr></table></figure>
-<ul>
-<li><code>.user-profile</code>  代表了一个块（一般为一个组件的最高等级）</li>
-<li><code>.user-profile__avatar</code>  代表的是用户头像</li>
-<li><code>.user-profile__nick-name</code>  代表的是用户昵称</li>
-<li><code>.user-profile__avatar--round</code>  代表的是用户头像的形状是为圆形</li>
-</ul>
-<blockquote>
-<p>上面定义了一个BEM的样式，无论是HTML或者CSS上，开发者一眼便可知道，这个块/组件是由哪些元素组成（<code>user-profile__avatar</code>，<code>user-profile__nick-name</code>），使用了哪些修饰符（<code>.user-profile__avatar--round</code>）</p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>接下来我们描述下BEM的使用场景，首先假设这个组件是一个“人”（<code>.person</code>），由四肢组成（<code>.person__leg</code>、<code>.person__hand</code>），修饰符可能是性别、年龄段等（<code>.person--male</code>、<code>.person--female</code>、<code>.person--audlt</code>、<code>.person--child</code>），这方便提供给开发者关于这些类名之间的联系，而不必从CSS上去推断。</p>
+<p>更重要的一点是你现在可以重用你的组件，假设两个不同的页面：一个显示成人，另一个显示儿童；人都是四肢、头部、手脚的，对于这部分类名，我们保持不变。我们所要做的只是通过修饰符来调整<code>块</code>或<code>元素</code>，以此达到我们想要的效果：</p>
+<div align="center"><br><br><img src="/images/BEM/bem-demo-person-block.png" alt=""><br>图1：通过<code>块</code>创建出一个“人型”组件。<br><br><img src="/images/BEM/bem-demo-person-elements.png" alt=""><br>图2：通过<code>元素</code>创建出人体所需组成部分。<br><br><img src="/images/BEM/bem-demo-person-modifiers.png" alt=""><br>图3：通过<code>修饰符</code>对块或元素进行部分调整。<br><br></div>
+
+<p><strong>来看看BEM在项目中的应用</strong>：<br>以常用的按钮组件<code>.btn</code>为例，这是每个网站几乎都会用到的，它提供给用户最基本的交互。这种较小的组件基本上没有包含太多的元素，但可能会包含多个<code>修饰符</code>，比方说这个按钮拥有四种颜色：<code>#efb5b5</code>，<code>#aed7ea</code>，<code>#afdeb5</code>，<code>#f8d892</code>，通常我们这样定义：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* Block */</span></div><div class="line"><span class="selector-class">.btn</span> &#123; <span class="comment">/* 这里是通用的样式 */</span> &#125;</div><div class="line"></div><div class="line"><span class="comment">/* Modifiers */</span></div><div class="line"><span class="selector-class">.btn--red</span> &#123; <span class="attribute">background</span>: <span class="number">#efb5b5</span>; &#125;</div><div class="line"><span class="selector-class">.btn--blue</span> &#123; <span class="attribute">background</span>: <span class="number">#aed7ea</span>; &#125;</div><div class="line"><span class="selector-class">.btn--green</span> &#123; <span class="attribute">background</span>: <span class="number">#afdeb5</span>; &#125;</div><div class="line"><span class="selector-class">.btn--yellow</span> &#123; <span class="attribute">background</span>: <span class="number">#f8d892</span>; &#125;</div></pre></td></tr></table></figure>
+<p>HTML中使用：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span> <span class="attr">class</span>=<span class="string">"btn btn--blue"</span>&gt;</span>Text<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>如你看到的，这里没有添加任何内部元素，但假如你想在内部添加一个图标，可以这样定义：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span> <span class="attr">class</span>=<span class="string">"btn btn--red"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"btn__icon"</span>&gt;</span>&amp;larr;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">  Text</div><div class="line"><span class="tag">&lt;/<span class="name">a</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><blockquote>
+<p>BEM的优点是便于维护，按组件划分类名，减少层次关系，实现扁平化、语义化，通过唯一的类名来避免不必要的样式继承，提高渲染效率。<br>但使用BEM并不是最终目的，而是将项目合理地组件化，将组件合理地结构化，构建易维护、易扩展的程序。<br>Maxim Shirshin说过：根本没有绝对正确的BEM，我们所提供的这种实现只是我们更喜欢的那种，你也可以有你自己的BEM，只要你遵循BEM的核心原则。BEM是一个方法论。公司和团队可以在把BEM整合到现有的工作流中的同时找出最适合自己的。</p>
 </blockquote>
-<p>让我们再来看看<code>正常</code>CSS写的类名:</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.user</span> &#123;&#125;</div><div class="line"><span class="selector-class">.profile</span> &#123;&#125;</div><div class="line"><span class="selector-class">.nick-name</span> &#123;&#125;</div><div class="line"><span class="selector-class">.avatar</span> &#123;&#125;</div><div class="line"><span class="selector-class">.round</span> &#123; <span class="attribute">border-radius</span>: <span class="number">50%</span> &#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>对于单个组件来说，者没什么问题，也可以正常工作，但其中的类名就是关联不起来，你可能会想：</p>
-<ul>
-<li><code>.nick-name</code>是谁的<code>.nick-name</code></li>
-<li><code>.avatar</code>是什么? 和 <code>.profile</code>，<code>.round</code>是什么关系?</li>
-</ul>
-</blockquote>
-<p>但在多个组件下，如果要对这种样式进行维护或者扩展，你可能会面临以下情况：</p>
-<ul>
-<li>类名是否还有别的地方<strong>引用/继承</strong>到，直接修改会不会对其它的样式造成影响，应不应该重新创建一个类？</li>
-<li>由于优先级的原因，导致最后<code>!important</code>的滥用</li>
-<li>对于使用预处理的开发者，随着样式文件的扩展，可能会演变成嵌套层次的不断增加，导致难以维护：</li>
-</ul>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 以 stylus 为例</span></div><div class="line">.user</div><div class="line">  &amp;.profile</div><div class="line">    &amp;.nick-name</div><div class="line">      <span class="comment">// more nest...</span></div><div class="line">    &amp;.avatar</div><div class="line">      &amp;.name</div><div class="line">      <span class="comment">// more nest...</span></div></pre></td></tr></table></figure>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>使用BEM并不是最终目的，而是将项目合理地组件化，将组件合理地结构化，构建易维护、易扩展的程序。<br>就像Maxim Shirshin说的</p>
-<blockquote>
-<p>根本没有绝对正确的BEM，我们所提供的这种实现只是我们更喜欢的那种，你也可以有你自己的BEM，只要你遵循BEM的核心原则。BEM是一个方法论。公司和团队可以在把BEM整合到现有的工作流中的同时找出最适合自己的。</p>
-</blockquote>
-<p>参考文献：<br><a href="https://blog.decaf.de/2015/06/24/why-bem-in-a-nutshell/" target="_blank" rel="external">‘Why BEM?’ in a nutshell</a><br><a href="https://www.smashingmagazine.com/2013/02/the-history-of-the-bem-methodology/" target="_blank" rel="external">The Evolution Of The BEM Methodology</a><br><a href="https://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/" target="_blank" rel="external">MindBEMding – getting your head ’round BEM syntax</a></p>
+<p>参考文献：<br><a href="https://assortment.io/posts/introducing-bem-css-naming-convention" target="_blank" rel="external">Introducing BEM: The popular CSS naming convention</a><br>相关链接：<br><a href="https://blog.decaf.de/2015/06/24/why-bem-in-a-nutshell" target="_blank" rel="external">‘Why BEM?’ in a nutshell</a><br><a href="https://www.smashingmagazine.com/2013/02/the-history-of-the-bem-methodology" target="_blank" rel="external">The Evolution Of The BEM Methodology</a><br><a href="https://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax" target="_blank" rel="external">MindBEMding – getting your head ’round BEM syntax</a></p>
 
       
     </div>
@@ -531,6 +515,13 @@
         </nav>
 
         
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
 
         <div class="links-of-author motion-element">
           
@@ -570,7 +561,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#介绍"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#特点"><span class="nav-number">2.</span> <span class="nav-text">特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用"><span class="nav-number">3.</span> <span class="nav-text">使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概念"><span class="nav-number">1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#介绍"><span class="nav-number">2.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用"><span class="nav-number">3.</span> <span class="nav-text">使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>
@@ -608,7 +599,7 @@
 <div class="theme-info">
   主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
+    NexT.Muse
   </a>
 </div>
 
