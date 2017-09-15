@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="ES7," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Masonz" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="Decorator是ES7中的一个提案, 这个概念是从 Python 借鉴来的，在 Python 里，decorator 实际上是一个 wrapper，它作用于一个目标函数，对这个目标函数做一些额外的操作，然后返回一个新的函数，ES中的Decorator也类似。  简单来说，Decorator是一个包裹函数，可以用来为类、属性或者函数提供额外的功能。  使用前的准备虽然Decorator只是一个">
+<meta name="keywords" content="ES7">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ES7装饰器(decorator)">
+<meta property="og:url" content="http://yoursite.com/2017/08/20/ES7装饰器-decorator/index.html">
+<meta property="og:site_name" content="Masonz">
+<meta property="og:description" content="Decorator是ES7中的一个提案, 这个概念是从 Python 借鉴来的，在 Python 里，decorator 实际上是一个 wrapper，它作用于一个目标函数，对这个目标函数做一些额外的操作，然后返回一个新的函数，ES中的Decorator也类似。  简单来说，Decorator是一个包裹函数，可以用来为类、属性或者函数提供额外的功能。  使用前的准备虽然Decorator只是一个">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://user-images.githubusercontent.com/10757519/30477650-7c35dbf4-9a40-11e7-9de0-1825b42afdad.jpeg">
+<meta property="og:updated_time" content="2017-09-15T10:05:38.560Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ES7装饰器(decorator)">
+<meta name="twitter:description" content="Decorator是ES7中的一个提案, 这个概念是从 Python 借鉴来的，在 Python 里，decorator 实际上是一个 wrapper，它作用于一个目标函数，对这个目标函数做一些额外的操作，然后返回一个新的函数，ES中的Decorator也类似。  简单来说，Decorator是一个包裹函数，可以用来为类、属性或者函数提供额外的功能。  使用前的准备虽然Decorator只是一个">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/10757519/30477650-7c35dbf4-9a40-11e7-9de0-1825b42afdad.jpeg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/08/20/ES7装饰器-decorator/"/>
+
+
+
+
+
+  <title>ES7装饰器(decorator) | Masonz</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?d778f5cbf8bdc2fb0a9175adf58bd4fe";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Masonz</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Masonz's blog</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-JavaScript" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/20/ES7装饰器-decorator/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Masonz">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Masonz">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">ES7装饰器(decorator)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-20T21:35:27+08:00">
+                2017-08-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/08/20/ES7装饰器-decorator/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/08/20/ES7装饰器-decorator/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="https://user-images.githubusercontent.com/10757519/30477650-7c35dbf4-9a40-11e7-9de0-1825b42afdad.jpeg" alt="cover_pic"></p>
+<p>Decorator是ES7中的一个<a href="https://github.com/wycats/javascript-decorators#class-declaration" target="_blank" rel="external">提案</a>, 这个概念是从 Python 借鉴来的，在 Python 里，decorator 实际上是一个 wrapper，它作用于一个目标函数，对这个目标函数做一些额外的操作，然后返回一个新的函数，ES中的Decorator也类似。</p>
+<blockquote>
+<p>简单来说，Decorator是一个包裹函数，可以用来为<code>类</code>、<code>属性</code>或者<code>函数</code>提供额外的功能。</p>
+</blockquote>
+<h2 id="使用前的准备"><a href="#使用前的准备" class="headerlink" title="使用前的准备"></a>使用前的准备</h2><p>虽然Decorator只是一个提案，但可以通过相应的工具来使用它：</p>
+<p><strong>Babel:</strong></p>
+<blockquote>
+<p><a href="https://www.npmjs.com/package/babel-plugin-syntax-decorators" target="_blank" rel="external">babel-plugin-syntax-decorators</a><br><a href="https://www.npmjs.com/package/babel-plugin-transform-decorators-legacy" target="_blank" rel="external">babel-plugin-transform-decorators-legacy</a></p>
+</blockquote>
+<p><strong>TypeScript:</strong><br>以命令行的形式:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tsc --target ES5 --experimentalDecorators</div></pre></td></tr></table></figure>
+<p>或者修改tsconfig.json:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"compilerOptions"</span>: &#123;</div><div class="line">        <span class="attr">"target"</span>: <span class="string">"ES5"</span>,</div><div class="line">        <span class="attr">"experimentalDecorators"</span>: <span class="literal">true</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>代码最终将被编译成ES5，你可以在<a href="http://babeljs.io/repl/" target="_blank" rel="external">Babel_REPL</a>上查看到编译后的代码</p>
+<h2 id="作用在属性上"><a href="#作用在属性上" class="headerlink" title="作用在属性上"></a>作用在属性上</h2><p>以一个logger为例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Math</span> </span>&#123;</div><div class="line">  @log</div><div class="line">  add(a, b) &#123;</div><div class="line">    <span class="keyword">return</span> a + b;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">log</span>(<span class="params">target, name, descriptor</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> originalMethod = descriptor.value;</div><div class="line"></div><div class="line">  descriptor.value = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">`Calling "<span class="subst">$&#123;name&#125;</span>" with`</span>, <span class="built_in">arguments</span>);</div><div class="line">    <span class="keyword">return</span> originalMethod.apply(<span class="literal">null</span>, <span class="built_in">arguments</span>);</div><div class="line">  &#125;;</div><div class="line"></div><div class="line">  <span class="keyword">return</span> descriptor;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">const</span> math = <span class="keyword">new</span> <span class="built_in">Math</span>();</div><div class="line"></div><div class="line"><span class="comment">// 传递的参数将被打印</span></div><div class="line">math.add(<span class="number">2</span>, <span class="number">4</span>); <span class="comment">// Calling "add" with 2, 4</span></div></pre></td></tr></table></figure>
+<p>流程是，我们通过<code>log</code>在<code>add</code>函数外面进行包裹：通过一个<code>originalMethod</code>变量来保留原始函数，触发console.log，最后将原始参数传递给原始函数并再次调用。<br>这里的<code>log</code>方法可以单独抽取成一个模块，之后在任何需要的地方引入它，即可使用。</p>
+<p>Decorator方法(Object.defineProperty)接收3个参数：</p>
+<blockquote>
+<p>target: 需要被操作的目标对象<br>name: 目标对象需要定义或修改的属性的名称<br>descriptor: 将被定义或修改的属性的描述符</p>
+</blockquote>
+<p>比较关键的是 descriptor 参数，它其实也是一个对象，其字段决定了 obj 的 prop 属性的一些特性。比如 enumerable 的真假就能决定目标对象是否可枚举（能够在 for…in 循环中遍历到，或者出现在 Object.keys 方法的返回值中）， writable 决定目标对象的属性是否可以更改，等等。详情参看<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty" target="_blank" rel="external">MDN</a> 。</p>
+<h2 id="作用在类上"><a href="#作用在类上" class="headerlink" title="作用在类上"></a>作用在类上</h2><p>Decorator也可以作用在类上，这里我们将使用它来实现工厂模式，传递某些参数到decorator方法来给类附加一些属性，例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Car</span>(<span class="params">brand, price</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">target</span>) </span>&#123;</div><div class="line">    target.brand = brand;</div><div class="line">    target.price = price;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">@Car(<span class="string">'benz'</span>, <span class="string">'1000000'</span>)</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Benz</span>() </span>&#123; &#125;</div><div class="line"></div><div class="line">@Car(<span class="string">'BMW'</span>, <span class="string">'600000'</span>)</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">BMW</span>() </span>&#123; &#125;</div><div class="line"></div><div class="line">@Car(<span class="string">'audi'</span>, <span class="string">'400000'</span>)</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Audi</span>() </span>&#123; &#125;</div></pre></td></tr></table></figure>
+<p>我们使用一个项目常用的验证登陆的例子：比如某些交互行为需要先判断用户登录状态，在已登录的情况下往下执行，未登录的的情况下则中断行为，并做相应提示。</p>
+<p>代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">auth</span>(<span class="params">user</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">target, key, descriptor</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> originalMethod = descriptor.value; <span class="comment">// 保留原有函数</span></div><div class="line">    <span class="keyword">if</span> (!user.isAuth) &#123;</div><div class="line">      descriptor.value = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="comment">// 未登录将返回提示</span></div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'当前未登录，请登录!'</span>);</div><div class="line">      &#125;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">      descriptor.value = <span class="function"><span class="keyword">function</span> (<span class="params">...args</span>) </span>&#123; <span class="comment">// 已登录将原有函数</span></div><div class="line">        originalMethod.apply(<span class="keyword">this</span>, args);</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> descriptor;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">@auth(app.user)</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">handleStar</span>(<span class="params">new</span>) </span>&#123;</div><div class="line">  <span class="comment">// 处理点赞行为</span></div><div class="line">  <span class="keyword">new</span>.like++;</div><div class="line">&#125;</div><div class="line"></div><div class="line">@auth(app.user)</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">handleComment</span>(<span class="params">new</span>) </span>&#123;</div><div class="line">  <span class="comment">// 处理评论行为</span></div><div class="line">  <span class="keyword">new</span>.comments.push(<span class="string">'xx到此一游'</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>Decorator可以允许我们将行为包装成简单的代码块，以便复用，使代码更加整洁。像常用的权限判断，实现工厂模式等。<br>Decorator已经被很多框架和代码库所使用，例如Vue的<a href="https://github.com/vuejs/vue-class-component" target="_blank" rel="external">vue-class-component</a>，<a href="https://github.com/kaorun343/vue-property-decorator" target="_blank" rel="external">vue-property-decorator</a>。</p>
+<p>参考文献：<br><a href="https://www.martin-brennan.com/es7-decorators/" target="_blank" rel="external">https://www.martin-brennan.com/es7-decorators/</a><br><a href="https://survivejs.com/react/appendices/understanding-decorators/" target="_blank" rel="external">Understanding Decorators</a><br><a href="http://www.liuhaihua.cn/archives/115548.html" target="_blank" rel="external">Decorators in ES7</a><br><a href="https://medium.com/front-end-hacking/javascript-make-your-code-cleaner-with-decorators-d34fc72af947" target="_blank" rel="external">JavaScript — Make your Code Cleaner with Decorators</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ES7/" rel="tag"># ES7</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/13/BEM的介绍与使用/" rel="next" title="BEM的介绍与使用">
+                <i class="fa fa-chevron-left"></i> BEM的介绍与使用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Masonz" />
+          <p class="site-author-name" itemprop="name">Masonz</p>
+           
+              <p class="site-description motion-element" itemprop="description">Masonz's blog</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/masonz" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用前的准备"><span class="nav-number">1.</span> <span class="nav-text">使用前的准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#作用在属性上"><span class="nav-number">2.</span> <span class="nav-text">作用在属性上</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#作用在类上"><span class="nav-number">3.</span> <span class="nav-text">作用在类上</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Masonz</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://masonzone.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2017/08/20/ES7装饰器-decorator/';
+          this.page.identifier = '2017/08/20/ES7装饰器-decorator/';
+          this.page.title = 'ES7装饰器(decorator)';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://masonzone.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
