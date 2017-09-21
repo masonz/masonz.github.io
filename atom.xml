@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-09-15T10:05:38.560Z</updated>
+  <updated>2017-09-21T13:07:09.716Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,11 +17,33 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>理解Promise</title>
+    <link href="http://yoursite.com/2017/08/28/%E7%90%86%E8%A7%A3Promise/"/>
+    <id>http://yoursite.com/2017/08/28/理解Promise/</id>
+    <published>2017-08-28T11:54:08.000Z</published>
+    <updated>2017-09-21T13:07:09.716Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/10757519/30697012-1c1446f0-9f10-11e7-9af6-713c9f0dfcad.jpg&quot;
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>ES7装饰器(decorator)</title>
     <link href="http://yoursite.com/2017/08/20/ES7%E8%A3%85%E9%A5%B0%E5%99%A8-decorator/"/>
     <id>http://yoursite.com/2017/08/20/ES7装饰器-decorator/</id>
     <published>2017-08-20T13:35:27.000Z</published>
-    <updated>2017-09-15T10:05:38.560Z</updated>
+    <updated>2017-09-18T15:38:36.634Z</updated>
     
     <summary type="html">
     
